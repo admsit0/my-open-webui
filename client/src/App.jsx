@@ -1,15 +1,17 @@
 import React from 'react';
-import ChatBox from './components/ChatBox';
-import AssistantSelector from './components/AssistantSelector';
-import FileUploader from './components/FileUploader';
+import ChatBox from '../components/ChatBox';
+import AssistantSelector from '../components/AssistantSelector';
+import FileUploader from '../components/FileUploader';
 
 const App = () => {
+  const [selectedAssistant, setSelectedAssistant] = useState(null);
+
   return (
     <div style={{ padding: '2rem', fontFamily: 'sans-serif' }}>
       <h1>Mi Open WebUI</h1>
-      <AssistantSelector />
+      <AssistantSelector onSelect={setSelectedAssistant} />
       <FileUploader />
-      <ChatBox />
+      {selectedAssistant && <ChatBox assistant={selectedAssistant} />}
     </div>
   );
 };
